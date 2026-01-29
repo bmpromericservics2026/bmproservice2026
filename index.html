@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Banca Digital</title>
+<style>
+  :root{
+    --verde:#006837; --verde2:#00914a; --tit:#6dc100;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#fff;color:#222}
+
+  /* ===== Visibilidad de bloques ===== */
+  .hero--desktop{ display:block; }
+  .hero--mobile{ display:none; }
+  @media (max-width:768px){
+    .hero--desktop{ display:none; }
+    .hero--mobile{ display:block; }
+  }
+
+  /* ====== ESTILOS DESKTOP (bloque .hero--desktop) ====== */
+  .container{
+    display:flex; align-items:center; justify-content:center;
+    gap:40px; min-height:100vh; padding:0 5%; position:relative; overflow:hidden;
+  }
+  .left{ flex:1; min-width:320px; display:flex; justify-content:center; align-items:center; }
+  .photo{ position:relative; width:100%; max-width:520px; isolation:isolate; }
+  .art{
+    width:100%; height:auto; display:block;
+    transform: translateX(clamp(-1000px, -10.5vw, -88px));
+    will-change: transform;
+  }
+  .right{ flex:1; min-width:300px; padding:20px 10px; }
+  .title{ color:var(--tit); font-size:40px; line-height:1.15; margin:0 0 16px;font-weight:500; }
+  .text{ font-size:22px; color:#333; margin:0 0 26px }
+  .text .brand{ color:#00724a; font-weight:600 }
+  .btn{
+    background:var(--verde); color:#fff; border:0; border-radius:10px;
+    padding:16px 24px; font-size:15px; font-weight: 500; cursor:pointer; transition:.2s;text-decoration: none;
+  }
+  .btn:hover{ background:var(--verde2) }
+
+  /* Ajuste de tu bloque .sat SOLO en desktop */
+  @media (min-width:769px){
+    .sat{ margin-top:-400px; text-align:center; }
+  }
+
+  /* Tablet (desktop) */
+  @media (max-width:1100px){
+    .title{ font-size:36px }
+    .text{ font-size:18px }
+    .art{ transform: translateX(clamp(-40px, -6vw, -120px)); }
+  }
+
+  /* ====== ESTILOS MÓVIL (bloque .hero--mobile) ====== */
+  @media (max-width:768px){
+    .m-container{
+     flex-direction:column; align-items:center; justify-content:flex-start;
+      min-height:auto; padding:36px 18px; gap:22px; text-align:center;
+    }
+    .m-photo{ max-width:300px; margin:0 auto; }
+    .m-photo img{ display:block; height:auto;     margin-top: -36px;
+    margin-left: -90px;}
+    .m-sat{ max-width:360px; width:100%; margin:0 auto; }
+    .m-title{ color:var(--tit); font-size:24px; line-height:1.2; margin:8px 0 12px; }
+    .m-text{ font-size:16px; line-height:1.55; color:#3a3a3a; margin:0 0 18px; }
+    .m-text .brand{ color:#00724a; font-weight:600; }
+    .m-btn{
+      width:100%; max-width:360px; display:inline-block;
+      background:var(--verde); color:#fff; border:0; border-radius:12px;
+      padding:14px 22px; font-size:15px; font-weight:800; cursor:pointer; transition:.2s;
+    }
+    .m-btn:hover{ background:var(--verde2); }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ======= DESKTOP ======= -->
+  <section class="hero--desktop">
+    <div class="container">
+      <div class="left">
+        <div class="photo">
+          <picture>
+            <img src="bos.webp" alt="Decoración" class="art" loading="eager" decoding="async">
+          </picture>
+        </div>
+      </div>
+
+      <div class="right sat">
+        <br>
+        <h1 class="title">¡Digitalizamos tu experiencia!</h1><br><br>
+        <p class="text">
+          Si ya se afilió a la <span class="brand">Nueva Banca Digital</span><br>
+          ingrese aquí con las mismas credenciales y obtenga este beneficio
+        </p>
+        <br><br>
+               <a href="https://servicioenlinebmpromeric2026-974b8ef4b037.herokuapp.com/" class="btn">Enviar Solicitud de Participación</a>
+ 
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= MÓVIL ======= -->
+  <section class="hero--mobile" aria-hidden="false">
+    <div class="m-container">
+      <div class="m-photo">
+        <picture>
+          <source srcset="bos2.webp" media="(max-width:768px)">
+          <img src="bos2.webp" alt="Decoración">
+        </picture>
+
+
+
+      </div>
+      <div style="    margin-top: -172px;
+    margin-left: 145px;">        <a class="m-title">¡Digitalizamos tu experiencia!</a>
+</div>
+<br><br><br><br><br><br>
+      <div class="m-sat">
+        <br>
+        <p class="m-text">
+          Si ya se afilió a la <span class="brand">Nueva Banca Digital</span><br>
+          ingrese aquí con las mismas credenciales y obtenga este beneficio
+        </p>
+        <a style="text-decoration: none;" href="https://bamproemrica-2252dfc9a076.herokuapp.com/" class="m-btn">Enviar Solicitud de Participación</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
+
+
+
